@@ -1,6 +1,6 @@
 
-//Rafael Ruvinski Sist.Embarcados s11
-// Pr·tica 1:
+//Rafael Ruvinski Sist.Embarcados s12
+// Pr√°tica 1:
 
 #include <stdint.h>
 #include <stdbool.h>
@@ -17,19 +17,19 @@ void main(void){
     SysCtlClockFreqSet(SYSCTL_OSC_INT | SYSCTL_USE_PLL | SYSCTL_CFG_VCO_320, 24000000); // 24MHz
 //  SysCtlClockFreqSet(SYSCTL_OSC_INT | SYSCTL_USE_PLL | SYSB9DCTL_CFG_VCO_320, 120000000); // 120MHz
 
-// Com o delay em 24Mhz  n„o necess·rios 8M ciclos para conseguismos um segundo.
+// Com o delay em 24Mhz  n√£o necess√°rios 8M ciclos para conseguismos um segundo.
   
-//// 1/24MHz = 41.7ns (4.17*10^-8) x(3 instruÁıes/loop) = 125ns   1/125nS = 8M CICLOS.
+//// 1/24MHz = 41.7ns (4.17*10^-8) x(3 instru√ß√µes/loop) = 125ns   1/125nS = 8M CICLOS.
   
 ////// com 120MHz:
 //////  1/120M = 8.33ns X 3 ciclos/loop: 25.0ns >> 1/25n = 4*10^7 ciclos (menos ciclos para 1 segundo)
   
-//////// Nesse caso n„o percebi alteraÁ„o na otimizaÁ„o.
+//////// Nesse caso n√£o percebi altera√ß√£o na otimiza√ß√£o.
     
     
   SysCtlPeripheralEnable(SYSCTL_PERIPH_GPIOF); // Habilita GPIO F (LED D3 = PF4, LED D4 = PF0)
-  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)); // Aguarda final da habilitaÁ„   
-  GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_0); // LED D4 como saÌda
+  while(!SysCtlPeripheralReady(SYSCTL_PERIPH_GPIOF)); // Aguarda final da habilita√ß√£   
+  GPIOPinTypeGPIOOutput(GPIO_PORTF_BASE, GPIO_PIN_0); // LED D4 como sa√≠da
   GPIOPinWrite(GPIO_PORTF_BASE, GPIO_PIN_0, 0); // LED D4 apagado
   GPIOPadConfigSet(GPIO_PORTF_BASE, GPIO_PIN_0, GPIO_STRENGTH_12MA, GPIO_PIN_TYPE_STD);
   SysTickIntEnable();
